@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!--
+    Ensure proper encoding of characters
+        à = \u00E0
+        è = \u00E8
+        ó = \u00F3
+        ù = \u00F9
+    -->
+
+    <!--Bottom nav view-->
+    <string name="test">Test</string>
+    <string name="generate">Generare</string>
+    <string name="password">Password</string>
+    <string name="passphrase">Passphrase</string>
+    <string name="settings">Impostazioni</string>
+
+    <!--#########################################################################################-->
+
+    <!--Test fragment-->
+    <string name="test_your_password">Prova la tua password</string>
+    <string name="ten_b_guesses_per_sec">10B tentativi/secondo</string>
+    <string name="ten_k_guesses_per_sec">10k tentativi/secondo</string>
+    <string name="ten_guesses_per_sec">10 tentativi/secondo</string>
+    <string name="hundred_guesses_per_hour">100 tentativi/ora</string>
+    <string name="strength">Sicurezza</string>
+    <string name="worst">Pessima</string>
+    <string name="weak">Debole</string>
+    <string name="medium">Media</string>
+    <string name="strong">Forte</string>
+    <string name="excellent">Eccellente</string>
+    <string name="est_time_to_crack">Tempo stimato per la decifratura</string>
+    <string name="less_than_sec">Meno di un secondo</string>
+    <string name="second">secondo</string>
+    <string name="seconds">secondi</string>
+    <string name="minute">minuto</string>
+    <string name="minutes">minuti</string>
+    <string name="hour">ora</string>
+    <string name="hours">ore</string>
+    <string name="day">giorno</string>
+    <string name="days">giorni</string>
+    <string name="month">mese</string>
+    <string name="months">mesi</string>
+    <string name="year">anno</string>
+    <string name="years">anni</string>
+    <string name="centuries">Secoli</string>
+    <string name="warning">Attenzione</string>
+    <string name="suggestions">Suggerimenti</string>
+    <string name="est_guesses_to_crack">Stima del numero di tentativi per decifrare</string>
+    <string name="order_of_magn">Ordine di grandezza dei tentativi</string>
+    <string name="entropy">Entropia</string>
+    <string name="bits">bit</string>
+    <string name="match_sequence">Sequenza di corrispondenza</string>
+    <string name="pattern">\u2022 Schema</string>
+    <string name="dict_name">\u2022 Nome del dizionario</string>
+    <string name="rank">\u2022 Classifica</string>
+    <string name="reversed">\u2022 Invertito</string>
+    <string name="substitutions">\u2022 Sostituzioni</string>
+    <string name="base_token">\u2022 Token di base</string>
+    <string name="repeat_times">\u2022 Ripetuto %1$s volte</string>
+    <string name="sequence_name">\u2022 Nome della sequenza</string>
+    <string name="sequence_size">\u2022 Dimensione della sequenza</string>
+    <string name="ascending">\u2022 Ascendente</string>
+    <string name="separator">\u2022 Separatore</string>
+    <string name="graph">\u2022 Grafico</string>
+    <string name="turns">\u2022 Giri</string>
+    <string name="shifted_times">\u2022 Spostato %1$s volte</string>
+    <string name="regex_name">\u2022 Nome Regex</string>
+    <string name="statistics">Statistiche</string>
+    <string name="length">Lunghezza</string>
+    <string name="uppercase">Maiuscole</string>
+    <string name="lowercase">Minuscole</string>
+    <string name="numbers">Numeri</string>
+    <string name="special_char">Caratteri speciali</string>
+    <string name="spaces">Spazi</string>
+
+    <!--#########################################################################################-->
+
+    <!--Multi password activity-->
+    <string name="view">Vista</string>
+    <string name="sort">Ordinamento</string>
+
+    <!--#########################################################################################-->
+
+    <!--Generate password fragment-->
+    <string name="details">Dettagli</string>
+    <string name="copy">Copia</string>
+    <string name="regenerate">Rigenera</string>
+    <string name="share">Condividi</string>
+    <string name="customize">Personalizza</string>
+    <string name="avoid_amb_chars">Evita i caratteri ambigui</string>
+    <string name="include_spaces">Includi spazi</string>
+
+    <!--Generate passphrase fragment-->
+    <string name="words">Parole</string>
+    <string name="capitalize">Maiuscolo</string>
+
+    <!--#########################################################################################-->
+
+    <!--Settings fragment-->
+    <string name="app_version">Versione</string>
+    <string name="appearance">Aspetto</string>
+    <string name="theme">Tema</string>
+    <string name="material_you">Material You\n(richiede il riavvio dell\'app)</string>
+    <string name="privacy">Privacy</string>
+    <string name="block_screenshots">Blocca gli screenshot nell\'app</string>
+    <string name="incognito_keyboard">Tastiera in incognito</string>
+    <string name="about">Info</string>
+    <string name="privacy_policy">Politica sulla Riservatezza</string>
+    <string name="report_issue">Segnala un problema</string>
+    <string name="support">Supporto</string>
+    <string name="view_on_github">Vedi su GitHub</string>
+    <string name="third_party_licenses">Licenze di terze parti</string>
+
+    <!--#########################################################################################-->
+
+    <!--Custom warnings-->
+    <string name="worst_pass_warning">La password \u00E8 troppo semplice da indovinare.</string>
+    <string name="weak_pass_warning">La password pu\u00F3 essere facilmente indovinata.</string>
+    <string name="medium_pass_warning">La password pu\u00F3 essere pi\u00F9 sicura.</string>
+
+    <!--#########################################################################################-->
+
+    <!--Bottom sheet-->
+    <string name="cancel">Annulla</string>
+    <string name="done">Fatto</string>
+
+    <!--Test multiple passwords-->
+    <string name="test_multi_pwds">Test di pi\u00F9 password</string>
+    <string name="add">Aggiungi</string>
+    <string name="select_file">Seleziona file</string>
+
+    <!--Add multiple passwords-->
+    <string name="add_multi_pwds">Aggiungere pi\u00F9 password</string>
+
+    <!--Theme-->
+    <string name="follow_system">Segui il sistema</string>
+    <string name="light">Chiaro</string>
+    <string name="dark">Scuro</string>
+
+    <!--#########################################################################################-->
+
+    <!--Snackbars-->
+    <string name="no_browsers">Nessun browser installato sul dispositivo</string>
+    <string name="copied_to_clipboard">Copiato negli appunti</string>
+
+    <!--#########################################################################################-->
+
+    <!--Quick settings tile-->
+    <string name="app_in_use">IYPS in uso</string>
+
+</resources>

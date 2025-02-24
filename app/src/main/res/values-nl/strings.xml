@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!--
+    Ensure proper encoding of characters
+        ï = \u00EF
+    -->
+
+    <!--Bottom nav view-->
+    <string name="test">Test</string>
+    <string name="generate">Genereren</string>
+    <string name="password">Wachtwoord</string>
+    <string name="passphrase">Passphrase</string>
+    <string name="settings">Instellingen</string>
+
+    <!--#########################################################################################-->
+
+    <!--Test fragment-->
+    <string name="test_your_password">Test je wachtwoord</string>
+    <string name="ten_b_guesses_per_sec">10B gissingen/seconde</string>
+    <string name="ten_k_guesses_per_sec">10k gissingen/seconde</string>
+    <string name="ten_guesses_per_sec">10 gissingen/seconde</string>
+    <string name="hundred_guesses_per_hour">100 gissingen/uur</string>
+    <string name="strength">Kracht</string>
+    <string name="worst">Slechtst</string>
+    <string name="weak">Zwak</string>
+    <string name="medium">Middelmatig</string>
+    <string name="strong">Sterk</string>
+    <string name="excellent">Excellent</string>
+    <string name="est_time_to_crack">Geschatte tijd om te kraken</string>
+    <string name="less_than_sec">Minder dan een seconde</string>
+    <string name="second">seconde</string>
+    <string name="seconds">seconden</string>
+    <string name="minute">minuut</string>
+    <string name="minutes">minuten</string>
+    <string name="hour">uur</string>
+    <string name="hours">uren</string>
+    <string name="day">dag</string>
+    <string name="days">dagen</string>
+    <string name="month">maand</string>
+    <string name="months">maanden</string>
+    <string name="year">jaar</string>
+    <string name="years">jaar</string>
+    <string name="centuries">Eeuwenouder</string>
+    <string name="warning">Waarschuwing</string>
+    <string name="suggestions">Suggesties</string>
+    <string name="est_guesses_to_crack">Geschatte gissingen om te kraken</string>
+    <string name="order_of_magn">Grootteorde van gissingen</string>
+    <string name="entropy">Entropie</string>
+    <string name="bits">bits</string>
+    <string name="match_sequence">Overeenkomende reeks</string>
+    <string name="pattern">\u2022 Patroon</string>
+    <string name="dict_name">\u2022 Naam woordenboek</string>
+    <string name="rank">\u2022 Rang</string>
+    <string name="reversed">\u2022 Omgekeerd</string>
+    <string name="substitutions">\u2022 Vervangingen</string>
+    <string name="base_token">\u2022 Basis token</string>
+    <string name="repeat_times">\u2022 %1$s keer herhaald</string>
+    <string name="sequence_name">\u2022 Sequentie naam</string>
+    <string name="sequence_size">\u2022 Sequentiegrootte</string>
+    <string name="ascending">\u2022 Oplopend</string>
+    <string name="separator">\u2022 Scheidingsteken</string>
+    <string name="graph">\u2022 Grafiek</string>
+    <string name="turns">\u2022 Draait</string>
+    <string name="shifted_times">\u2022 Verschoven %1$s keer</string>
+    <string name="regex_name">\u2022 Regex naam</string>
+    <string name="statistics">Statistieken</string>
+    <string name="length">Lengte</string>
+    <string name="uppercase">Hoofdletters</string>
+    <string name="lowercase">Kleineletters</string>
+    <string name="numbers">Cijfers</string>
+    <string name="special_char">Speciale tekens</string>
+    <string name="spaces">Ruimtes</string>
+
+    <!--#########################################################################################-->
+
+    <!--Multi password activity-->
+    <string name="view">Bekijk</string>
+    <string name="sort">Sorteer</string>
+
+    <!--#########################################################################################-->
+
+    <!--Generate password fragment-->
+    <string name="details">Details</string>
+    <string name="copy">Kopie</string>
+    <string name="regenerate">Regenereer</string>
+    <string name="share">Deel</string>
+    <string name="customize">Pas  aan</string>
+    <string name="avoid_amb_chars">Vermijd dubbelzinnige tekens</string>
+    <string name="include_spaces">Ruimtes opnemen</string>
+
+    <!--Generate passphrase fragment-->
+    <string name="words">Woorden</string>
+    <string name="capitalize">Hoofdletter</string>
+
+    <!--#########################################################################################-->
+
+    <!--Settings fragment-->
+    <string name="app_version">Versie</string>
+    <string name="appearance">Uiterlijk</string>
+    <string name="theme">Thema</string>
+    <string name="material_you">Materiaal Jij\n(app opnieuw opstarten vereist)</string>
+    <string name="privacy">Privacy</string>
+    <string name="block_screenshots">Screenshots blokkeren in app</string>
+    <string name="incognito_keyboard">Incognito toetsenbord</string>
+    <string name="about">Over</string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="report_issue">Een probleem melden</string>
+    <string name="support">Ondersteuning</string>
+    <string name="view_on_github">Bekijk op GitHub</string>
+    <string name="third_party_licenses">Licenties van derden</string>
+
+    <!--#########################################################################################-->
+
+    <!--Custom warnings-->
+    <string name="worst_pass_warning">Wachtwoord is te eenvoudig om te raden.</string>
+    <string name="weak_pass_warning">Wachtwoord kan eenvoudig worden gekraakt.</string>
+    <string name="medium_pass_warning">Wachtwoord is niet sterk genoeg.</string>
+
+    <!--#########################################################################################-->
+
+    <!--Bottom sheet-->
+    <string name="cancel">Annuleren</string>
+    <string name="done">Gedaan</string>
+
+    <!--Test multiple passwords-->
+    <string name="test_multi_pwds">Meerdere wachtwoorden testen</string>
+    <string name="add">Voeg toe</string>
+    <string name="select_file">Selecteer bestand</string>
+
+    <!--Add multiple passwords-->
+    <string name="add_multi_pwds">Meerdere wachtwoorden toevoegen</string>
+
+    <!--Theme-->
+    <string name="follow_system">Systeem volgen</string>
+    <string name="light">Licht</string>
+    <string name="dark">Donker</string>
+
+    <!--#########################################################################################-->
+
+    <!--Snackbars-->
+    <string name="no_browsers">Geen browsers ge\u00EFnstalleerd op dit apparaat</string>
+    <string name="copied_to_clipboard">Gekopieerd naar klembord</string>
+
+    <!--#########################################################################################-->
+
+    <!--Quick settings tile-->
+    <string name="app_in_use">IYPS in gebruik</string>
+
+</resources>

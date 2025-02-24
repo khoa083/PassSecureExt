@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <string name="app_name" translatable="false">IYPS</string>
+
+    <string name="na" translatable="false">-</string>
+    <string name="bottom_sheet_title" translatable="false">Bottom Sheet Title</string>
+
+    <!--Support methods-->
+    <string name="liberapay" translatable="false">Liberapay</string>
+    <string name="paypal" translatable="false">PayPal</string>
+    <string name="kofi" translatable="false">Ko-fi</string>
+
+    <!--Licenses title-->
+    <string name="zxcvbn4j" translatable="false">zxcvbn4j</string>
+    <string name="seclists" translatable="false">SecLists</string>
+    <string name="eff_diceware" translatable="false">EFF Diceware</string>
+    <string name="fastscroll" translatable="false">AndroidFastScroll-kt</string>
+    <string name="liberapay_icon" translatable="false">Liberapay icon</string>
+    <string name="paypal_icon" translatable="false">PayPal icon</string>
+    <string name="kofi_icon" translatable="false">Ko-fi icon</string>
+
+    <string name="copyright_zxcvbn4j" translatable="false">Copyright \u00A9 2014 Nulab Inc</string>
+    <string name="copyright_seclists" translatable="false">Copyright \u00A9 2018 Daniel Miessler</string>
+    <string name="copyright_fastscroll" translatable="false">Copyright \u00A9 2023-present StellarSand</string>
+
+</resources>

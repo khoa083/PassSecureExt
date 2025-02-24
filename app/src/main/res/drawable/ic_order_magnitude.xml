@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960"
+    android:tint="?attr/colorControlNormal">
+    <path android:fillColor="@android:color/white"
+        android:pathData="M160 720q-33 0-56.5-23.5T80 640V320q0-33 23.5-56.5T160 240h640q33 0 56.5 23.5T880 320v320q0 33-23.5 56.5T800 720H160zm0-80h640V320H680v120q0 17-11.5 28.5T640 480q-17 0-28.5-11.5T600 440V320h-80v120q0 17-11.5 28.5T480 480q-17 0-28.5-11.5T440 440V320h-80v120q0 17-11.5 28.5T320 480q-17 0-28.5-11.5T280 440V320H160v320zm160-160zm160 0zm160 0zm-160 0z"/>
+</vector>
