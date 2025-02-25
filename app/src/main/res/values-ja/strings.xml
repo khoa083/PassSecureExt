@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!--Bottom nav view-->
+    <string name="test">テスト</string>
+    <string name="generate">生成する</string>
+    <string name="password">パスワード</string>
+    <string name="passphrase">パスフレーズ</string>
+    <string name="settings">設定</string>
+
+    <!--#########################################################################################-->
+
+    <!--Test fragment-->
+    <string name="test_your_password">パスワードをテストしてください</string>
+    <string name="ten_b_guesses_per_sec">10B 推測/秒</string>
+    <string name="ten_k_guesses_per_sec">10k 推測/秒</string>
+    <string name="ten_guesses_per_sec">10 推測/秒</string>
+    <string name="hundred_guesses_per_hour">100 推測/時間</string>
+    <string name="strength">力</string>
+    <string name="worst">最悪</string>
+    <string name="weak">弱い</string>
+    <string name="medium">中くらい</string>
+    <string name="strong">強い</string>
+    <string name="excellent">優れた</string>
+    <string name="est_time_to_crack">割れ目の推定時間</string>
+    <string name="less_than_sec">1秒未満</string>
+    <string name="second">秒</string>
+    <string name="seconds">秒</string>
+    <string name="minute">分</string>
+    <string name="minutes">分</string>
+    <string name="hour">時間</string>
+    <string name="hours">時間</string>
+    <string name="day">日</string>
+    <string name="days">日</string>
+    <string name="month">ヶ月</string>
+    <string name="months">ヶ月</string>
+    <string name="year">年</string>
+    <string name="years">年</string>
+    <string name="centuries">世紀</string>
+    <string name="warning">警告</string>
+    <string name="suggestions">提案</string>
+    <string name="est_guesses_to_crack">クラックする推定推測値</string>
+    <string name="order_of_magn">推測の桁</string>
+    <string name="entropy">エントロピー</string>
+    <string name="bits">ビット</string>
+    <string name="match_sequence">マッチシーケンス</string>
+    <string name="pattern">\u2022 パターン</string>
+    <string name="dict_name">\u2022 辞書名</string>
+    <string name="rank">\u2022 順位</string>
+    <string name="reversed">\u2022 置換</string>
+    <string name="substitutions">\u2022 逆順</string>
+    <string name="base_token">\u2022 ベーストークン</string>
+    <string name="repeat_times">\u2022 繰り返し %1$s 回</string>
+    <string name="sequence_name">\u2022 配列名</string>
+    <string name="sequence_size">\u2022 シーケンスサイズ</string>
+    <string name="ascending">\u2022 昇順</string>
+    <string name="separator">\u2022 セパレーター</string>
+    <string name="graph">\u2022 グラフ</string>
+    <string name="turns">\u2022 ターン</string>
+    <string name="shifted_times">\u2022 %1$s回シフト</string>
+    <string name="regex_name">\u2022 正規表現名</string>
+    <string name="statistics">統計情報</string>
+    <string name="length">長さ</string>
+    <string name="uppercase">大文字</string>
+    <string name="lowercase">小文字</string>
+    <string name="numbers">数字</string>
+    <string name="special_char">特殊文字</string>
+    <string name="spaces">スペース</string>
+
+    <!--#########################################################################################-->
+
+    <!--Multi password activity-->
+    <string name="view">表示</string>
+    <string name="sort">ソート</string>
+
+    <!--#########################################################################################-->
+
+    <!--Generate password fragment-->
+    <string name="details">詳細</string>
+    <string name="copy">コピー</string>
+    <string name="regenerate">再生</string>
+    <string name="share">シェア</string>
+    <string name="customize">カスタマイズ</string>
+    <string name="avoid_amb_chars">曖昧な文字は避ける</string>
+    <string name="include_spaces">スペースを含む</string>
+
+    <!--Generate passphrase fragment-->
+    <string name="words">言葉</string>
+    <string name="capitalize">資本金</string>
+
+    <!--#########################################################################################-->
+
+    <!--Settings fragment-->
+    <string name="app_version">バージョン</string>
+    <string name="appearance">外観</string>
+    <string name="theme">テーマ</string>
+    <string name="material_you">マテリアルユー\n(アプリの再起動が必要)</string>
+    <string name="privacy">プライバシー</string>
+    <string name="block_screenshots">アプリでスクリーンショットをブロック</string>
+    <string name="incognito_keyboard">インコグニートキーボード</string>
+    <string name="about">約</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="report_issue">問題を報告する</string>
+    <string name="support">サポート</string>
+    <string name="view_on_github">GitHubを見る</string>
+    <string name="third_party_licenses">サードパーティライセンス</string>
+
+    <!--#########################################################################################-->
+
+    <!--Custom warnings-->
+    <string name="worst_pass_warning">パスワードは推測するには簡単すぎます。 </string>
+    <string name="weak_pass_warning">パスワードは簡単に割れます.</string>
+    <string name="medium_pass_warning">パスワードは十分に強くありません.</string>
+
+    <!--#########################################################################################-->
+
+    <!--Bottom sheet-->
+    <string name="cancel">キャンセル</string>
+    <string name="done">完了</string>
+
+    <!--Test multiple passwords-->
+    <string name="test_multi_pwds">複数のパスワードをテストする</string>
+    <string name="add">追加</string>
+    <string name="select_file">ファイルを選ぶ</string>
+
+    <!--Add multiple passwords-->
+    <string name="add_multi_pwds">複数のパスワードを追加する</string>
+
+    <!--Theme-->
+    <string name="follow_system">フォローシステム</string>
+    <string name="light">光</string>
+    <string name="dark">闇</string>
+
+    <!--#########################################################################################-->
+
+    <!--Snackbars-->
+    <string name="no_browsers">このデバイスにブラウザがインストールされていません</string>
+    <string name="copied_to_clipboard">クリップボードにコピー</string>
+
+    <!--#########################################################################################-->
+
+    <!--Quick settings tile-->
+    <string name="app_in_use">使用中のIYPS</string>
+
+</resources>

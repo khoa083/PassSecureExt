@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/phraseScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="64dp"
+    android:clipToPadding="false"
+    android:scrollbarThumbVertical="@drawable/shape_scrollbar_thumb">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/margin_12">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/phraseGeneratedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_12"
+            android:padding="@dimen/margin_20"
+            android:background="@drawable/shape_outline"
+            android:backgroundTint="?attr/colorSurfaceContainerHighest"
+            android:gravity="center"
+            android:minHeight="50dp"
+            android:textSize="@dimen/text_20"
+            style="@style/MediumBoldText"/>
+
+        <com.google.android.material.button.MaterialButtonGroup
+            android:id="@+id/phraseBtnGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/phraseGeneratedTextView"
+            app:layout_constraintStart_toStartOf="@id/phraseGeneratedTextView"
+            app:layout_constraintEnd_toEndOf="@id/phraseGeneratedTextView"
+            android:layout_marginTop="@dimen/margin_16">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/phraseCopyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_20"
+                app:icon="@drawable/ic_copy"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:contentDescription="@string/copy"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/phraseRegenerateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_20"
+                app:icon="@drawable/ic_regenerate"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:contentDescription="@string/regenerate"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/phraseShareBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_20"
+                app:icon="@drawable/ic_share"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:contentDescription="@string/share"/>
+
+        </com.google.android.material.button.MaterialButtonGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/phraseCustomizeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/phraseGeneratedTextView"
+            app:layout_constraintTop_toBottomOf="@id/phraseBtnGroup"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_30"
+            android:drawableStart="@drawable/ic_customize"
+            android:drawablePadding="@dimen/margin_12"
+            android:text="@string/customize"
+            android:textSize="@dimen/text_18"
+            style="@style/MediumBoldText"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wordsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/phraseCustomizeText"
+            app:layout_constraintTop_toBottomOf="@id/phraseCustomizeText"
+            android:layout_marginTop="@dimen/margin_20"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            android:text="@string/words"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="@dimen/text_16"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/phraseWordsSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/wordsText"
+            app:layout_constraintEnd_toEndOf="@id/phraseGeneratedTextView"
+            app:layout_constraintTop_toBottomOf="@id/wordsText"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_8"
+            android:valueFrom="3.0"
+            android:valueTo="20.0"
+            style="@style/SliderStyle"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/separatorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/phraseCustomizeText"
+            app:layout_constraintTop_toBottomOf="@id/phraseWordsSlider"
+            android:layout_marginTop="@dimen/margin_25"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            android:text="@string/separator"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="@dimen/text_16"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/phraseGeneratedTextView"
+            app:layout_constraintTop_toTopOf="@id/separatorText"
+            app:layout_constraintBottom_toBottomOf="@id/separatorText"
+            android:layout_marginEnd="@dimen/margin_12"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/separatorDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/capitalizeSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/phraseCustomizeText"
+            app:layout_constraintEnd_toEndOf="@id/phraseGeneratedTextView"
+            app:layout_constraintTop_toBottomOf="@id/separatorText"
+            android:layout_marginStart="@dimen/margin_30"
+            android:layout_marginEnd="@dimen/margin_25"
+            android:layout_marginTop="@dimen/margin_40"
+            android:checked="true"
+            android:text="@string/capitalize"
+            android:textSize="@dimen/text_16"
+            android:textColor="?attr/colorOnSurface"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

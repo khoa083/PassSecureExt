@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~     Copyright (C) 2022-present StellarSand
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!--Medium bold text style-->
+    <style name="MediumBoldText" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <!--#########################################################################################-->
+
+    <!--Bottom Nav-->
+    <style name="NavTextActive" parent="MediumBoldText">
+        <item name="android:textSize">@dimen/text_15</item>
+    </style>
+
+    <!--#########################################################################################-->
+
+    <!--Base linear progress indicator style-->
+    <style name="ProgressIndicatorStyle" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="trackCornerRadius">@dimen/margin_8</item>
+        <item name="trackThickness">@dimen/margin_65</item>
+        <item name="trackStopIndicatorSize">0dp</item>
+    </style>
+
+    <!--#########################################################################################-->
+
+    <!--Base slider style-->
+    <style name="SliderStyle" parent="Widget.Material3.Slider">
+        <item name="android:stepSize">1.0</item>
+        <item name="tickVisible">false</item>
+        <item name="labelBehavior">gone</item>
+    </style>
+
+    <!--#########################################################################################-->
+
+    <!--Base theme chip style-->
+    <style name="BaseThemeChipStyle" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_bg_color</item>
+        <item name="chipSurfaceColor">@android:color/transparent</item>
+        <item name="closeIconStartPadding">@dimen/margin_4</item>
+        <item name="closeIconSize">24dp</item>
+        <item name="chipIconSize">24dp</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="checkedIcon">@drawable/ic_done</item>
+    </style>
+
+    <!--#########################################################################################-->
+
+    <!--Base bottom sheet style-->
+    <style name="CustomBottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/BottomSheetShapeStyle</item>
+    </style>
+
+    <!--Bottom sheet rounded corners-->
+    <style name="BottomSheetShapeStyle" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">@dimen/margin_16</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!--Bottom sheet buttons-->
+    <style name="NegativeButtonStyle" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+
+    <!--#########################################################################################-->
+
+    <!--Snackbar text style-->
+    <style name="SnackbarTextStyle" parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textSize">@dimen/text_15</item>
+    </style>
+
+</resources>
