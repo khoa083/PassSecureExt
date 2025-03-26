@@ -23,10 +23,10 @@ class MultiPwdActivity : AppCompatActivity(), MenuProvider {
     private var isGridView = false
     private var isAscSort = false
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         window.setNavBarContrastEnforced()
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
         addMenuProvider(this)
     }
 

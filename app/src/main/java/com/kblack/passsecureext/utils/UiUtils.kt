@@ -1,11 +1,33 @@
 package com.kblack.passsecureext.utils
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.Window
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatDelegate
+import com.kblack.passsecureext.R
 
 class UiUtils {
     companion object {
+
+        @SuppressLint("ObsoleteSdkInt")
+        fun setAppTheme(selectedTheme: Int) {
+            when(selectedTheme) {
+                0 -> {
+                    if (Build.VERSION.SDK_INT >= 29){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    }
+                    else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
+                }
+                R.id.followSystem -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                R.id.light -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                R.id.dark -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+
+        @SuppressLint("ObsoleteSdkInt")
         fun Window.setNavBarContrastEnforced() {
             if (Build.VERSION.SDK_INT >= 29) {
                 isNavigationBarContrastEnforced = false
