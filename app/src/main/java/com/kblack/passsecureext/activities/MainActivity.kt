@@ -14,6 +14,7 @@ import com.google.android.material.color.DynamicColors
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.appmanager.ApplicationManager
 import com.kblack.passsecureext.databinding.ActivityMainBinding
+import com.kblack.passsecureext.objects.AppState
 import com.kblack.passsecureext.preferences.PreferenceManager
 import com.kblack.passsecureext.preferences.PreferenceManager.Companion.MATERIAL_YOU
 import com.kblack.passsecureext.utils.UiUtils.Companion.setNavBarContrastEnforced
@@ -45,6 +46,11 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment
         navController = navHostFragment.navController
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppState.isAppOpen = false
     }
 
 }
