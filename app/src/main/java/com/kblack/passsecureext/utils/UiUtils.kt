@@ -14,12 +14,16 @@ class UiUtils {
         fun setAppTheme(selectedTheme: Int) {
             when(selectedTheme) {
                 0 -> {
-                    if (Build.VERSION.SDK_INT >= 29){
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    }
-                    else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
+                    AppCompatDelegate.setDefaultNightMode(
+                        if(Build.VERSION.SDK_INT >= 29) AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                        else AppCompatDelegate.MODE_NIGHT_NO
+                    )
+//                    if (Build.VERSION.SDK_INT >= 29){
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+//                    }
+//                    else {
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                    }
                 }
                 R.id.followSystem -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 R.id.light -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

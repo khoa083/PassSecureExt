@@ -7,6 +7,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -43,9 +44,15 @@ class MainActivity : AppCompatActivity() {
         window.setNavBarContrastEnforced()
 
         super.onCreate(savedInstanceState, persistentState)
+//        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+        activityBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityBinding.root)
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment
         navController = navHostFragment.navController
+        AppState.isAppOpen = true
+        val checkIcon = ContextCompat.getDrawable(this, R.drawable.ic_done)
+        viewsToAnimate = arrayOf(activityBinding.generateToggleGroup, activityBinding.generateBottomAppBar)
     }
 
     override fun onDestroy() {
