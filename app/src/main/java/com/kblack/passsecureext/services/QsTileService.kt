@@ -11,6 +11,7 @@ import com.kblack.passsecureext.R
 import com.kblack.passsecureext.activities.MainActivity
 import com.kblack.passsecureext.objects.AppState
 
+@SuppressLint("ObsoleteSdkInt")
 @RequiresApi(Build.VERSION_CODES.N)
 class QsTileService : TileService() {
     @SuppressLint("ObsoleteSdkInt")
