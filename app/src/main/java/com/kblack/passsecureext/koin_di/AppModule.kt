@@ -1,5 +1,6 @@
 package com.kblack.passsecureext.koin_di
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Build
 import com.kblack.passsecureext.R
@@ -18,6 +19,7 @@ import java.io.InputStreamReader
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 
+@SuppressLint("ObsoleteSdkInt")
 val appModule =
     module {
         single { PreferenceManager(get()) }
