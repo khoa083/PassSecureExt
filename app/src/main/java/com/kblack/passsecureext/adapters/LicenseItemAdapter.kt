@@ -8,6 +8,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.activities.MainActivity
 import com.kblack.passsecureext.models.License
+import com.kblack.passsecureext.utils.IntentUtils.Companion.openURL
 
 class LicenseItemAdapter(
     private val aListViewItems: ArrayList<License>,
@@ -34,13 +35,13 @@ class LicenseItemAdapter(
         holder.licenseTitle.apply {
             text = license.title
             setOnClickListener {
-
+                openURL(mainActivity, license.url)
             }
         }
+
+        holder.licenseDesc.text = license.desc
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = aListViewItems.size
 
 }
