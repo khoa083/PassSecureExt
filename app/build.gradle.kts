@@ -13,12 +13,11 @@ android {
 
     defaultConfig {
         applicationId = "com.kblack.passsecureext"
-        minSdk = 30
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "IYPS_v$versionName")
     }
 
     buildTypes {

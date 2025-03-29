@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/multiPwdFragment"
-        android:name="com.iyps.fragments.multipwd.MultiPwdFragment"
+        android:name="com.kblack.passsecureext.fragments.multipwd.MultiPwdFragment"
         android:label="MultiPwdFragment"
         tools:layout="@layout/fragment_multi_pwd">
         <action

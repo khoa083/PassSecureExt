@@ -1,5 +1,6 @@
 package com.kblack.passsecureext.bottomsheets
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -48,6 +49,11 @@ class TestMultiPwdBottomSheet : BottomSheetDialogFragment() {
 
     private var filePicker =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+
+            if (result.resultCode == Activity.RESULT_OK ) {
+                val data = result.data!!
+                val fileUri = data.data
+            }
 
         }
 

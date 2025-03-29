@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/testPasswordFragment"
-        android:name="com.iyps.fragments.main.TestPasswordFragment"
+        android:name="com.kblack.passsecureext.fragments.main.TestPasswordFragment"
         android:label="fragment_test_password"
         tools:layout="@layout/fragment_test_password" >
         <action
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.iyps.fragments.main.SettingsFragment"
+        android:name="com.kblack.passsecureext.fragments.main.SettingsFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/generatePasswordFragment"
-        android:name="com.iyps.fragments.main.GeneratePasswordFragment"
+        android:name="com.kblack.passsecureext.fragments.main.GeneratePasswordFragment"
         android:label="@string/password"
         tools:layout="@layout/fragment_generate_password">
         <action
@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/generatePassphraseFragment"
-        android:name="com.iyps.fragments.main.GeneratePassphraseFragment"
+        android:name="com.kblack.passsecureext.fragments.main.GeneratePassphraseFragment"
         android:label="@string/passphrase"
         tools:layout="@layout/fragment_generate_passphrase">
         <action
