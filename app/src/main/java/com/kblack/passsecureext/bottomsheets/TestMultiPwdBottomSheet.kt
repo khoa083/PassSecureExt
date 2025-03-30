@@ -8,10 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kblack.passsecureext.R
+import com.kblack.passsecureext.activities.MultiPwdActivity
 import com.kblack.passsecureext.databinding.BottomSheetHeaderBinding
 import com.kblack.passsecureext.databinding.BottomSheetTestMultiPwdBinding
+import com.kblack.passsecureext.models.MultiPwdItem
+import com.kblack.passsecureext.objects.MultiPwdList
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.BufferedReader
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.io.InputStreamReader
 
 class TestMultiPwdBottomSheet : BottomSheetDialogFragment() {
 
@@ -53,8 +64,48 @@ class TestMultiPwdBottomSheet : BottomSheetDialogFragment() {
             if (result.resultCode == Activity.RESULT_OK ) {
                 val data = result.data!!
                 val fileUri = data.data
+
+                lifecycleScope.launch(Dispatchers.IO) {
+                    try {
+                        val inputStream = requireActivity().contentResolver.openInputStream(fileUri!!)
+                        val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+                        var lineList: Array<String>
+
+                        MultiPwdList.pwdList.apply {
+                            if (isNotEmpty()) clear()
+
+                            while (bufferedReader.readLine().also { lineList = arrayOf(it) } != null) {
+                                for (line in lineList) {
+                                    if (line.isNotEmpty()) add(MultiPwdItem(passwordLine = line))
+                                }
+                            }
+                        }
+
+                        inputStream!!.close()
+                        bufferedReader.close()
+                    } catch (fileNotFoundException: FileNotFoundException) {
+                        fileNotFoundException.printStackTrace()
+                        withContext(Dispatchers.Main) {
+                            //FIXME:
+                        }
+                    } catch (ioException: IOException) {
+                        ioException.printStackTrace()
+                        withContext(Dispatchers.Main) {
+                            //FIXME:
+                        }
+                    }
+                    withContext(Dispatchers.Main) {
+                        dismiss()
+                        startActivity(Intent(requireActivity(), MultiPwdActivity::class.java))
+                    }
+                }
             }
 
         }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
