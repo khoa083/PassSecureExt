@@ -1,23 +1,35 @@
 package com.kblack.passsecureext.activities
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.color.DynamicColors
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.appmanager.ApplicationManager
 import com.kblack.passsecureext.databinding.ActivityMainBinding
 import com.kblack.passsecureext.objects.AppState
 import com.kblack.passsecureext.preferences.PreferenceManager
+import com.kblack.passsecureext.preferences.PreferenceManager.Companion.BLOCK_SS
+import com.kblack.passsecureext.preferences.PreferenceManager.Companion.GEN_TOGGLE
 import com.kblack.passsecureext.preferences.PreferenceManager.Companion.MATERIAL_YOU
+import com.kblack.passsecureext.utils.UiUtils.Companion.blockScreenshots
+import com.kblack.passsecureext.utils.UiUtils.Companion.convertDpToPx
 import com.kblack.passsecureext.utils.UiUtils.Companion.setNavBarContrastEnforced
 import org.koin.android.ext.android.inject
 
@@ -44,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         window.setNavBarContrastEnforced()
 
         super.onCreate(savedInstanceState, persistentState)
-//        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
         activityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityBinding.root)
 
@@ -53,6 +65,159 @@ class MainActivity : AppCompatActivity() {
         AppState.isAppOpen = true
         val checkIcon = ContextCompat.getDrawable(this, R.drawable.ic_done)
         viewsToAnimate = arrayOf(activityBinding.generateToggleGroup, activityBinding.generateBottomAppBar)
+
+        // Adjust UI components for edge to edge
+        mapOf(
+            activityBinding.generateBottomAppBar to 80f,
+            activityBinding.generateToggleGroup to 95f
+        ).forEach { (view, margin) ->
+            ViewCompat.setOnApplyWindowInsetsListener(view) { v, windowInsets ->
+                v.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    bottomMargin =
+                        windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom +
+                                convertDpToPx(this@MainActivity, margin)
+                }
+                WindowInsetsCompat.CONSUMED
+            }
+        }
+
+        // Disable screenshots and screen recordings
+        window.blockScreenshots(prefManager.getBoolean(BLOCK_SS))
+
+        selectedItem =
+            savedInstanceState?.getInt("selectedItem") ?:
+            if (intent.extras?.getString("shortcut") == "shortcutGenerate") {
+                R.id.nav_generate
+            } else R.id.nav_test
+
+        // Opened from shortcut or quick settings toggle
+        if (savedInstanceState == null && selectedItem == R.id.nav_generate) {
+            displayFragment(selectedItem)
+            showViewsWithAnimation()
+        }
+
+        //Bottom nav
+        activityBinding.mainBottomNav.apply {
+            setOnItemSelectedListener { item ->
+                selectedItem = item.itemId
+                displayFragment(selectedItem)
+                if (selectedItem == R.id.nav_generate) showViewsWithAnimation() else  hideViewsWithAnimation()
+                true
+            }
+            setOnItemReselectedListener {}
+        }
+
+        // Toggle button group
+        activityBinding.generateToggleGroup.apply {
+            val selectedToggle: Int
+            prefManager.apply {
+                if (
+                    getInt(GEN_TOGGLE) != R.id.togglePassword &&
+                    getInt(GEN_TOGGLE) != R.id.togglePassphrase
+                    ) {
+                    setInt(GEN_TOGGLE, R.id.togglePassword)
+                }
+                selectedToggle = getInt(GEN_TOGGLE)
+            }
+            check(selectedToggle)
+            findViewById<MaterialButton>(selectedToggle).icon = checkIcon
+            addOnButtonCheckedListener { _, checkedId, isChecked ->
+                if (isChecked) {
+                    findViewById<MaterialButton>(checkedId).icon = checkIcon // Add check icon
+                    displayFragment(R.id.nav_generate, checkedId)
+                    prefManager.setInt(GEN_TOGGLE, checkedId)
+                } else {
+                    findViewById<MaterialButton>(checkedId).icon = null // Remove check icon
+                }
+            }
+        }
+
+    }
+
+    // Setup fragments
+    private fun displayFragment(clickedNavItem: Int, clickedToggleItem: Int = prefManager.getInt(GEN_TOGGLE)) {
+        val currentFragment = navController.currentDestination!!
+
+        val navActionsMap =
+            mapOf(
+                Pair(R.id.generatePasswordFragment, R.id.nav_test) to R.id.action_generatePasswordFragment_to_testPasswordFragment,
+                Pair(R.id.generatePassphraseFragment, R.id.nav_test) to R.id.action_generatePassphraseFragment_to_testPasswordFragment,
+                Pair(R.id.settingsFragment, R.id.nav_test) to R.id.action_settingsFragment_to_testPasswordFragment,
+                Pair(R.id.testPasswordFragment, R.id.nav_settings) to R.id.action_testPasswordFragment_to_settingsFragment,
+                Pair(R.id.generatePasswordFragment, R.id.nav_settings) to R.id.action_generatePasswordFragment_to_settingsFragment,
+                Pair(R.id.generatePassphraseFragment, R.id.nav_settings) to R.id.action_generatePassphraseFragment_to_settingsFragment
+            )
+
+        val toggleActionsMap =
+            mapOf(
+                Pair(R.id.testPasswordFragment, R.id.togglePassword) to R.id.action_testPasswordFragment_to_generatePasswordFragment,
+                Pair(R.id.settingsFragment, R.id.togglePassword) to R.id.action_settingsFragment_to_generatePasswordFragment,
+                Pair(R.id.testPasswordFragment, R.id.togglePassphrase) to R.id.action_testPasswordFragment_to_generatePassphraseFragment,
+                Pair(R.id.settingsFragment, R.id.togglePassphrase) to R.id.action_settingsFragment_to_generatePassphraseFragment,
+                Pair(R.id.generatePasswordFragment, R.id.togglePassphrase) to R.id.action_generatePasswordFragment_to_generatePassphraseFragment,
+                Pair(R.id.generatePassphraseFragment, R.id.togglePassword) to R.id.action_generatePassphraseFragment_to_generatePasswordFragment
+            )
+
+        val action =
+            if (clickedNavItem == R.id.nav_generate) {
+                toggleActionsMap[Pair(currentFragment.id, clickedToggleItem)] ?: 0
+            } else {
+                navActionsMap[Pair(currentFragment.id, clickedNavItem)] ?: 0
+            }
+
+        // java.lang.IllegalArgumentException:
+        // Destination id == 0 can only be used in conjunction with a valid navOptions.popUpTo
+        // Hence the second check
+        if (clickedNavItem != currentFragment.id && action != 0) {
+            activityBinding.mainBottomNav.menu.findItem(clickedNavItem).isChecked = true
+            navController.navigate(action)
+        }
+
+
+
+    }
+
+    /**
+     * ObjectAnimator only performs effects for 1 view,
+     * forEach loops through views
+     */
+    private fun showViewsWithAnimation() {
+        viewsToAnimate.forEach { view ->
+            ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).apply {
+                duration = 500L
+                interpolator = SHOW_ANIM_INTERPOLATOR
+                view.isVisible = true
+                start()
+            }
+        }
+    }
+
+    private fun hideViewsWithAnimation() {
+        viewsToAnimate.forEach { view ->
+            ObjectAnimator.ofFloat(view, "alpha", 1f, 0f).apply {
+                duration = 300L
+                interpolator = HIDE_ANIM_INTERPOLATOR
+                start()
+            }.doOnEnd { view.isVisible = false }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedItem", selectedItem)
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (navController.currentDestination!!.id != navController.graph.startDestinationId) {
+                selectedItem = R.id.nav_test
+                displayFragment(selectedItem)
+                hideViewsWithAnimation()
+            } else {
+                finish()
+            }
+        }
+
     }
 
     override fun onDestroy() {
