@@ -14,6 +14,7 @@ class EvaluatePassword(
 ) {
     init {
         val strength = zxcvbn.measure(password)
+        val crackTimesDisplay = strength.crackTimesDisplay
         //....
     }
 
