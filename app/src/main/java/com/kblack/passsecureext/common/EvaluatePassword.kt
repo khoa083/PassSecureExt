@@ -13,9 +13,23 @@ class EvaluatePassword(
     resultUtils: ResultUtils
 ) {
     init {
+
+        //Đo lường độ mạnh của mật khẩu
         val strength = zxcvbn.measure(password)
         val crackTimesDisplay = strength.crackTimesDisplay
-        //....
+        val crackTimeSeconds = strength.crackTimeSeconds
+
+        //Thời gian bẻ khóa trong các kịch bản
+        val tenBCrackTimeString = crackTimesDisplay.offlineFastHashing1e10PerSecond
+        val tenKCrackTimeString = crackTimesDisplay.offlineSlowHashing1e4perSecond
+        val tenCrackTimeString = crackTimesDisplay.onlineNoThrottling10perSecond
+        val hundredCrackTimeString = crackTimesDisplay.onlineThrottling100perHour
+
+        //Chuyển đổi thời gian sang mili giây
+        val tenBCrackTimeMillis = (crackTimeSeconds.offlineFastHashing1e10PerSecond * 1000).toLong()
+        val tenKCrackTimeMillis = (crackTimeSeconds.offlineSlowHashing1e4perSecond * 1000).toLong()
+        val tenCrackTimeMillis = (crackTimeSeconds.onlineNoThrottling10perSecond * 1000).toLong()
+        val hundredCrackTimeMillis = (crackTimeSeconds.onlineThrottling100perHour * 1000).toLong()
     }
 
 }
