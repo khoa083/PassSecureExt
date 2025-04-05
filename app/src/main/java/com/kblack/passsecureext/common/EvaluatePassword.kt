@@ -32,6 +32,11 @@ class EvaluatePassword(
         val hundredCrackTimeMillis = (crackTimeSeconds.onlineThrottling100perHour * 1000).toLong()
 
         // Estimated time to crack
+        fragmentBinding.tenBGuessesSubtitle.text = resultUtils.replaceCrackTimeStrings(tenBCrackTimeString)
+        val tenBCrackTimeScore = resultUtils.crackTimeScore(tenBCrackTimeMillis)
+        resultUtils.setStrengthProgressAndText(tenBCrackTimeScore,
+            fragmentBinding.tenBGuessesStrengthMeter,
+            fragmentBinding.tenBGuessesStrength)
     }
 
 }
