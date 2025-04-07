@@ -2,6 +2,7 @@ package com.kblack.passsecureext.utils
 
 import android.content.Context
 import com.kblack.passsecureext.R
+import java.util.concurrent.TimeUnit
 
 class ResultUtils(val context: Context) {
 
@@ -23,6 +24,28 @@ class ResultUtils(val context: Context) {
 
     private val timeStringsRegex = "(\\d+)\\s+(\\w+)".toRegex() // Insert regex meme here
 
+    // Take days in:
+    // Month = 31, Year = 365
+    private val threeHrsInMillis = TimeUnit.HOURS.toMillis(3)
+    private val oneMonthInMillis = TimeUnit.DAYS.toMillis(31)
+    private val sixMonthsInMillis = TimeUnit.DAYS.toMillis(186)
+    private val fiveYrsInMillis = TimeUnit.DAYS.toMillis(1825)
+
+    private val emptyMeterColor = context.resources.getColor(android.R.color.transparent, context.theme)
+    private val worstMeterColor = context.resources.getColor(R.color.worstMeterColor, context.theme)
+    private val weakMeterColor = context.resources.getColor(R.color.weakMeterColor, context.theme)
+    private val mediumMeterColor = context.resources.getColor(R.color.mediumMeterColor, context.theme)
+    private val strongMeterColor = context.resources.getColor(R.color.strongMeterColor, context.theme)
+    private val excellentMeterColor = context.resources.getColor(R.color.excellentMeterColor, context.theme)
+
+    private companion object {
+        private const val WORST_SCORE = 1
+        private const val WEAK_SCORE = 2
+        private const val MEDIUM_SCORE = 3
+        private const val STRONG_SCORE = 4
+        private const val EXCELLENT_SCORE = 5
+    }
+
     fun replaceCrackTimeStrings(timeToCrackString: String): String {
         var replacedString = timeToCrackString
 
@@ -43,5 +66,18 @@ class ResultUtils(val context: Context) {
 
         return  replacedString
     }
+
+    // Custom score
+    fun crackTimeScore(crackTimeMilliSeconds: Long): Int {
+        return when (crackTimeMilliSeconds) {
+            in 0..threeHrsInMillis -> WORST_SCORE
+            in (threeHrsInMillis + 1)..oneMonthInMillis -> WEAK_SCORE
+            in (oneMonthInMillis + 1)..sixMonthsInMillis -> MEDIUM_SCORE
+            in (sixMonthsInMillis + 1)..fiveYrsInMillis -> STRONG_SCORE
+            else -> EXCELLENT_SCORE
+        }
+    }
+
+
 
 }
