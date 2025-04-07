@@ -1,6 +1,8 @@
 package com.kblack.passsecureext.utils
 
 import android.content.Context
+import com.google.android.material.progressindicator.LinearProgressIndicator
+import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
 import java.util.concurrent.TimeUnit
 
@@ -37,6 +39,13 @@ class ResultUtils(val context: Context) {
     private val mediumMeterColor = context.resources.getColor(R.color.mediumMeterColor, context.theme)
     private val strongMeterColor = context.resources.getColor(R.color.strongMeterColor, context.theme)
     private val excellentMeterColor = context.resources.getColor(R.color.excellentMeterColor, context.theme)
+
+    private val worstString = context.getString(R.string.worst)
+    private val weakString = context.getString(R.string.weak)
+    private val mediumString = context.getString(R.string.medium)
+    private val strongString = context.getString(R.string.strong)
+    private val excellentString = context.getString(R.string.excellent)
+    private val naString = context.getString(R.string.na)
 
     private companion object {
         private const val WORST_SCORE = 1
@@ -78,6 +87,28 @@ class ResultUtils(val context: Context) {
         }
     }
 
+    fun setStrengthProgressAndText(
+        crackTimeScore: Int,
+        strengthMeter: LinearProgressIndicator,
+        strengthTextView: MaterialTextView
+    ) {
+        val strengthProgTextMap = mapOf(
+                WORST_SCORE to Triple(20, worstMeterColor, worstString),
+                WEAK_SCORE to Triple(40, weakMeterColor, weakString),
+                MEDIUM_SCORE to Triple(60, mediumMeterColor, mediumString),
+                STRONG_SCORE to Triple(80, strongMeterColor, strongString),
+                EXCELLENT_SCORE to Triple(100, excellentMeterColor, excellentString)
+            )
 
+        val (progress, indicatorColor, strengthText) =
+            strengthProgTextMap[crackTimeScore] ?: Triple(0, emptyMeterColor, naString)
+
+        strengthMeter.apply {
+            setIndicatorColor(indicatorColor)
+            setProgressCompat(progress, true)
+        }
+
+        strengthTextView.text = strengthText
+    }
 
 }
