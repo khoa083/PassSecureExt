@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
+import com.nulabinc.zxcvbn.Feedback
 import java.util.concurrent.TimeUnit
 
 class ResultUtils(val context: Context) {
@@ -46,6 +47,10 @@ class ResultUtils(val context: Context) {
     private val strongString = context.getString(R.string.strong)
     private val excellentString = context.getString(R.string.excellent)
     private val naString = context.getString(R.string.na)
+
+    private val worstPassWarning = context.getString(R.string.worst_pass_warning)
+    private val weakPassWarning = context.getString(R.string.weak_pass_warning)
+    private val mediumPassWarning = context.getString(R.string.medium_pass_warning)
 
     private companion object {
         private const val WORST_SCORE = 1
@@ -109,6 +114,21 @@ class ResultUtils(val context: Context) {
         }
 
         strengthTextView.text = strengthText
+    }
+
+    fun getWarningText (
+        localizedFeedback: Feedback,
+        crackTimeScore: Int
+    ): String {
+        return localizedFeedback.warning
+            .ifEmpty {
+                when (crackTimeScore) {
+                    WORST_SCORE -> worstPassWarning
+                    WEAK_SCORE -> weakPassWarning
+                    MEDIUM_SCORE -> mediumPassWarning
+                    else -> naString
+                }
+            }
     }
 
 }
