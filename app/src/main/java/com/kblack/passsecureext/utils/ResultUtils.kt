@@ -1,9 +1,11 @@
 package com.kblack.passsecureext.utils
 
 import android.content.Context
+import androidx.core.text.HtmlCompat
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
+import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.nulabinc.zxcvbn.Feedback
 import java.util.concurrent.TimeUnit
 
@@ -129,6 +131,17 @@ class ResultUtils(val context: Context) {
                     else -> naString
                 }
             }
+    }
+
+    fun getSuggestionsText(guesses: Double): CharSequence {
+        val guessesString = guesses.toString()
+        return if (guessesString.contains("E")) {
+            val splitString = guessesString.split("E")
+            HtmlCompat.fromHtml("${splitString[0].toDouble().formatToTwoDecimalPlaces()} x 10<sup><small>${splitString[1]}</small></sup>",
+                HtmlCompat.FROM_HTML_MODE_COMPACT)
+        } else {
+            guessesString.toDouble().formatToTwoDecimalPlaces()
+        }
     }
 
 }
