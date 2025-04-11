@@ -8,6 +8,7 @@ import com.kblack.passsecureext.R
 import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.nulabinc.zxcvbn.Feedback
 import java.util.concurrent.TimeUnit
+import kotlin.math.log2
 
 class ResultUtils(val context: Context) {
 
@@ -142,6 +143,17 @@ class ResultUtils(val context: Context) {
         } else {
             guessesString.toDouble().formatToTwoDecimalPlaces()
         }
+    }
+
+    fun getEntropyText(statsCountsList: Array<Int>): String {
+        var poolSize = 0.0
+
+        if (statsCountsList[1] > 0) poolSize += 26.0
+        if (statsCountsList[2] > 0) poolSize += 26.0
+        if (statsCountsList[3] > 0) poolSize += 10.0
+        if (statsCountsList[4] > 0) poolSize += 32.0
+
+        return (statsCountsList[0] * log2(poolSize)).formatToTwoDecimalPlaces()
     }
 
 }
