@@ -134,7 +134,13 @@ class ResultUtils(val context: Context) {
             }
     }
 
-    fun getSuggestionsText(guesses: Double): CharSequence {
+    fun getSuggestionsText(localizedFeedback: Feedback): CharSequence
+        = buildString {
+            localizedFeedback.suggestions.joinTo(this, "\n") {"\u2022 $it"}
+                .ifEmpty { append(naString) }
+    }
+
+    fun getGuessesText(guesses: Double): CharSequence {
         val guessesString = guesses.toString()
         return if (guessesString.contains("E")) {
             val splitString = guessesString.split("E")
