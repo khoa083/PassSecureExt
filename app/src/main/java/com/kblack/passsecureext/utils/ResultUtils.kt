@@ -151,6 +151,14 @@ class ResultUtils(val context: Context) {
         }
     }
 
+    fun getMatchSequenceText() {
+
+    }
+
+    fun getStatisticsCounts() {
+
+    }
+
     fun getEntropyText(statsCountsList: Array<Int>): String {
         var poolSize = 0.0
 
