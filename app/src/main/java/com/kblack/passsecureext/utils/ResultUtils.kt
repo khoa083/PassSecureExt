@@ -155,8 +155,14 @@ class ResultUtils(val context: Context) {
 
     }
 
-    fun getStatisticsCounts() {
-
+    fun getStatisticsCounts(charSequence: CharSequence): Array<Int> {
+        val length = charSequence.length
+        val upperCaseCount = charSequence.count { it.isUpperCase() }
+        val lowerCaseCount = charSequence.count { it.isLowerCase() }
+        val numbersCount = charSequence.count { it.isDigit() }
+        val spacesCount = charSequence.count { it.isWhitespace() }
+        val specialCharsCount = length - upperCaseCount - lowerCaseCount - numbersCount - spacesCount
+        return arrayOf(length, upperCaseCount, lowerCaseCount, numbersCount, specialCharsCount, spacesCount)
     }
 
     fun getEntropyText(statsCountsList: Array<Int>): String {
