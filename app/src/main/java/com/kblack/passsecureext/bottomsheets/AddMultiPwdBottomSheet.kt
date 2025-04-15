@@ -49,7 +49,7 @@ class AddMultiPwdBottomSheet : BottomSheetDialogFragment() {
                 }
             }
         }
-
+        // Done
         footerBinding.doneBtn.apply {
             isVisible = true
             setOnClickListener {
@@ -62,7 +62,7 @@ class AddMultiPwdBottomSheet : BottomSheetDialogFragment() {
                 startActivity(Intent(requireActivity(), MultiPwdActivity::class.java))
             }
         }
-
+        // Cancel
         footerBinding.cancelBtn.setOnClickListener { dismiss() }
 
     }
