@@ -37,6 +37,9 @@ class EvaluatePassword(
         resultUtils.setStrengthProgressAndText(tenBCrackTimeScore,
             fragmentBinding.tenBGuessesStrengthMeter,
             fragmentBinding.tenBGuessesStrength)
+
+        fragmentBinding.tenKGuessesSubtitle.text = resultUtils.replaceCrackTimeStrings(tenKCrackTimeString)
+
     }
 
 }
