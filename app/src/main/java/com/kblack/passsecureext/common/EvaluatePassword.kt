@@ -39,6 +39,19 @@ class EvaluatePassword(
             fragmentBinding.tenBGuessesStrength)
 
         fragmentBinding.tenKGuessesSubtitle.text = resultUtils.replaceCrackTimeStrings(tenKCrackTimeString)
+        resultUtils.setStrengthProgressAndText(resultUtils.crackTimeScore(tenKCrackTimeMillis),
+            fragmentBinding.tenKGuessesStrengthMeter,
+            fragmentBinding.tenKGuessesStrength)
+
+        fragmentBinding.tenGuessesSubtitle.text = resultUtils.replaceCrackTimeStrings(tenCrackTimeString)
+        resultUtils.setStrengthProgressAndText(resultUtils.crackTimeScore(tenCrackTimeMillis),
+            fragmentBinding.tenGuessesStrengthMeter,
+            fragmentBinding.tenGuessesStrength)
+
+        fragmentBinding.hundredGuessesSubtitle.text = resultUtils.replaceCrackTimeStrings(hundredCrackTimeString)
+        resultUtils.setStrengthProgressAndText(resultUtils.crackTimeScore(hundredCrackTimeMillis),
+            fragmentBinding.hundredGuessesStrengthMeter,
+            fragmentBinding.hundredGuessesStrength)
 
     }
 
