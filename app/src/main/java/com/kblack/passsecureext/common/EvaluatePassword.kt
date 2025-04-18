@@ -2,6 +2,7 @@ package com.kblack.passsecureext.common
 
 import android.content.Context
 import com.kblack.passsecureext.databinding.FragmentTestPasswordBinding
+import com.kblack.passsecureext.utils.LocaleUtils.Companion.localizedFeedbackResourceBundle
 import com.kblack.passsecureext.utils.ResultUtils
 import com.nulabinc.zxcvbn.Zxcvbn
 
@@ -53,6 +54,16 @@ class EvaluatePassword(
             fragmentBinding.hundredGuessesStrengthMeter,
             fragmentBinding.hundredGuessesStrength)
 
+        // Warning
+        val localizedFeedback = strength.feedback.withResourceBundle(localizedFeedbackResourceBundle(context))
+        fragmentBinding.warningSubtitle.text = resultUtils.getWarningText(localizedFeedback, tenBCrackTimeScore)
+
+        // Suggestions
+        // Guesses
+        // Order of magnitude of guesses
+        // Entropy
+        // Match sequence
+        // Statistics
     }
 
 }
