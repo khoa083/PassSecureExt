@@ -1,7 +1,9 @@
 package com.kblack.passsecureext.utils
 
 import android.content.Context
+import java.io.InputStreamReader
 import java.util.Locale
+import java.util.Properties
 import java.util.ResourceBundle
 
 class LocaleUtils {
@@ -18,7 +20,16 @@ class LocaleUtils {
                 ResourceBundle.getBundle("com/nulabinc/zxcvbn/messages")
             }
             else {
+                val properties =
+                    when(locale) {
+                        "fa" -> load
+                    }
+            }
+        }
 
+        private fun loadTranslations(context: Context, resId: Int): Properties {
+            return Properties().apply {
+                load(InputStreamReader(context.resources.openRawResource(resId), Charsets.UTF_8))
             }
         }
 
