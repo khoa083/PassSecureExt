@@ -14,6 +14,12 @@ class LocaleUtils {
 
             // If locale is in zxcvbn4j, use default resource bundle
             // else use custom messages.properties from res/raw
+            return if (locale !in setOf("fa", "pt-rBR", "sv", "tr", "zh")) {
+                ResourceBundle.getBundle("com/nulabinc/zxcvbn/messages")
+            }
+            else {
+
+            }
         }
 
     }
