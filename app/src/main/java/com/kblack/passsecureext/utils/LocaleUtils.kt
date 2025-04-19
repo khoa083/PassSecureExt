@@ -5,6 +5,9 @@ import java.io.InputStreamReader
 import java.util.Locale
 import java.util.Properties
 import java.util.ResourceBundle
+import com.kblack.passsecureext.R
+import java.util.Collections
+import java.util.Enumeration
 
 class LocaleUtils {
 
@@ -22,8 +25,17 @@ class LocaleUtils {
             else {
                 val properties =
                     when(locale) {
-                        "fa" -> load
+                        "fa" -> loadTranslations(context, R.raw.messages_fa)
+                        "pt-rBR" -> loadTranslations(context, R.raw.messages_pt_rbr)
+                        "sv" -> loadTranslations(context, R.raw.messages_sv)
+                        "tr" -> loadTranslations(context, R.raw.messages_tr)
+                        else -> loadTranslations(context, R.raw.messages_zh)
                     }
+
+                object : ResourceBundle() {
+                    override fun handleGetObject(key: String?): Any? =properties.getProperty(key)
+                    override fun getKeys(): Enumeration<String?>? = Collections.enumeration(properties.keys.map { it.toString() })
+                }
             }
         }
 
