@@ -1,10 +1,15 @@
 package com.kblack.passsecureext.common
 
+import android.annotation.SuppressLint
 import android.content.Context
+import com.kblack.passsecureext.R
 import com.kblack.passsecureext.databinding.FragmentTestPasswordBinding
+import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.kblack.passsecureext.utils.LocaleUtils.Companion.localizedFeedbackResourceBundle
 import com.kblack.passsecureext.utils.ResultUtils
 import com.nulabinc.zxcvbn.Zxcvbn
+import java.util.Locale
+import kotlin.collections.get
 
 class EvaluatePassword(
     zxcvbn: Zxcvbn,
@@ -59,11 +64,31 @@ class EvaluatePassword(
         fragmentBinding.warningSubtitle.text = resultUtils.getWarningText(localizedFeedback, tenBCrackTimeScore)
 
         // Suggestions
+        fragmentBinding.suggestionsSubtitle.text = resultUtils.getSuggestionsText(localizedFeedback)
+
         // Guesses
+        val guesses = strength.guesses
+        fragmentBinding.guessesSubtitle.text = resultUtils.getGuessesText(guesses)
+
         // Order of magnitude of guesses
+        fragmentBinding.orderMagnSubtitle.text = strength.guessesLog10.formatToTwoDecimalPlaces()
+
         // Entropy
+        val statsList = resultUtils.getStatisticsCounts(password)
+        @SuppressLint("SetTextI18n")
+        fragmentBinding.entropySubtitle.text = "${resultUtils.getEntropyText(statsList)} ${context.getString(R.string.bits)}"
+
         // Match sequence
+        fragmentBinding.matchSequenceSubtitle.text = resultUtils.getMatchSequenceText(strength)
+
         // Statistics
+        fragmentBinding.lengthText.text = String.format(Locale.getDefault(), "%d", statsList[0])
+        fragmentBinding.uppercaseText.text = String.format(Locale.getDefault(), "%d", statsList[1])
+        fragmentBinding.lowercaseText.text = String.format(Locale.getDefault(), "%d", statsList[2])
+        fragmentBinding.numbersText.text = String.format(Locale.getDefault(), "%d", statsList[3])
+        fragmentBinding.specialCharsText.text = String.format(Locale.getDefault(), "%d", statsList[4])
+        fragmentBinding.spacesText.text = String.format(Locale.getDefault(), "%d", statsList[5])
+
     }
 
 }

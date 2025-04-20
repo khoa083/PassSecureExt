@@ -14,18 +14,20 @@ import com.kblack.passsecureext.utils.IntentUtils.Companion.openURL
 class SupportMethodItemAdapter(
     private val aListViewItems: ArrayList<SupportMethod>,
     private val mainActivity: MainActivity
-): RecyclerView.Adapter<SupportMethodItemAdapter.ListViewHolder>() {
+) : RecyclerView.Adapter<SupportMethodItemAdapter.ListViewHolder>() {
 
-    inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val supportMethodTitle: MaterialTextView = itemView.findViewById(R.id.supportMethodTitle)
         val supportMethodQR: ShapeableImageView = itemView.findViewById(R.id.supportMethodQr)
         val supportMethodUrl: MaterialTextView = itemView.findViewById(R.id.supportMethodUrl)
     }
 
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder
-    = ListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_support_methods_recycler_view, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder =
+        ListViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_support_methods_recycler_view, parent, false)
+        )
 
     override fun getItemCount(): Int = aListViewItems.size
 
@@ -42,7 +44,7 @@ class SupportMethodItemAdapter(
 
         holder.supportMethodUrl.apply {
             text = supportMethod.url
-            setOnClickListener{
+            setOnClickListener {
                 openURL(mainActivity, supportMethod.url)
             }
         }
