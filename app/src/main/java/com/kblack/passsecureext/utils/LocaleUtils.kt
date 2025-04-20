@@ -33,7 +33,7 @@ class LocaleUtils {
                     }
 
                 object : ResourceBundle() {
-                    override fun handleGetObject(key: String?): Any? =properties.getProperty(key)
+                    override fun handleGetObject(key: String?): Any? = properties.getProperty(key)
                     override fun getKeys(): Enumeration<String?>? = Collections.enumeration(properties.keys.map { it.toString() })
                 }
             }

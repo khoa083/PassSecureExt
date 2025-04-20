@@ -7,6 +7,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.nulabinc.zxcvbn.Feedback
+import com.nulabinc.zxcvbn.Strength
 import java.util.concurrent.TimeUnit
 import kotlin.math.log2
 
@@ -151,8 +152,14 @@ class ResultUtils(val context: Context) {
         }
     }
 
-    fun getMatchSequenceText() {
+    fun getMatchSequenceText(strength: Strength): CharSequence {
+        val matchSequence = strength.sequence
 
+        val matchesText = buildString {
+            matchSequence.forEachIndexed { index, match ->
+                val pattern = match.pattern
+            }
+        }
     }
 
     fun getStatisticsCounts(charSequence: CharSequence): Array<Int> {
