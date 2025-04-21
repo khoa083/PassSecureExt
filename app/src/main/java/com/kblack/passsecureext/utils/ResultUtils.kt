@@ -7,6 +7,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.nulabinc.zxcvbn.Feedback
+import com.nulabinc.zxcvbn.Pattern
 import com.nulabinc.zxcvbn.Strength
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -183,8 +184,60 @@ class ResultUtils(val context: Context) {
 
                 append("<b>${index + 1}) \"${match.token}\"</b>")
                 append("<br>${patternString}: $pattern")
+                if (matchSequence.size > 1)
+                    append("<br>\u2022 ${orderMagnString}: ${match.guessesLog10.formatToTwoDecimalPlaces()}")
+
+                when (pattern) {
+                    Pattern.Dictionary -> {
+                        val dictionaryName =
+                            when (match.dictionaryName) {
+                                "english_wikipedia" -> "wikipedia"
+                                "female_names" -> "names"
+                                else -> match.dictionaryName
+                            }
+                        append("<br>${dictNameString}: $dictionaryName")
+                        if (matchSequence.size > 1) append("<br>${rankString}: ${match.rank}")
+                        append("<br>${reversedString}: ${match.reversed}")
+                        if (match.l33t)
+                            append("<br>${substitutionsString}: ${match.subDisplay.removeSurrounding("[", "]")}")
+                    }
+
+                    Pattern.Repeat -> {
+                        append("<br>${baseTokenString}: ${match.baseToken}")
+                        append("<br>${context.getString(R.string.repeat_times, match.repeatCount.toString())}")
+                    }
+
+                    Pattern.Sequence -> {
+                        append("<br>${seqNameString}: ${match.sequenceName}")
+                        append("<br>${seqSizeString}: ${match.sequenceSpace}")
+                        append("<br>${ascendingString}: ${match.ascending}")
+                    }
+
+                    Pattern.Date-> {
+                        append("<br>${dayString}: ${match.day}")
+                        append("<br>${monthString}: ${match.month}")
+                        append("<br>${yearString}: ${match.year}")
+                        match.separator.takeIf { it.isNotEmpty() }?.let {
+                            append("<br>$separatorString: $it")
+                        }
+                    }
+
+                    Pattern.Spatial -> {
+                        append("<br>${graphString}: ${match.graph}")
+                        append("<br>${turnsString}: ${match.turns}")
+                        append("<br>${context.getString(R.string.shifted_times, match.shiftedCount.toString())}")
+                    }
+
+                    Pattern.Regex -> append("<br>${regexNameString}: ${match.regexName}")
+
+                    else -> {}
+                }
+
+                if (index != matchSequence.lastIndex) append("<br>__________________________<br><br>")
             }
         }
+
+        return HtmlCompat.fromHtml(matchesText, HtmlCompat.FROM_HTML_MODE_COMPACT)
     }
 
     fun getStatisticsCounts(charSequence: CharSequence): Array<Int> {
