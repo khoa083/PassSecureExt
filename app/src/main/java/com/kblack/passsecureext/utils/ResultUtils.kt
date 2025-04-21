@@ -8,6 +8,7 @@ import com.kblack.passsecureext.R
 import com.kblack.passsecureext.utils.FormatUtils.Companion.formatToTwoDecimalPlaces
 import com.nulabinc.zxcvbn.Feedback
 import com.nulabinc.zxcvbn.Strength
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.log2
 
@@ -55,6 +56,27 @@ class ResultUtils(val context: Context) {
     private val worstPassWarning = context.getString(R.string.worst_pass_warning)
     private val weakPassWarning = context.getString(R.string.weak_pass_warning)
     private val mediumPassWarning = context.getString(R.string.medium_pass_warning)
+
+    private val patternString = context.getString(R.string.pattern)
+    private val orderMagnString = context.getString(R.string.order_of_magn)
+    private val dictNameString = context.getString(R.string.dict_name)
+    private val rankString = context.getString(R.string.rank)
+    private val reversedString = context.getString(R.string.reversed)
+    private val substitutionsString = context.getString(R.string.substitutions)
+    private val baseTokenString = context.getString(R.string.base_token)
+    private val seqNameString = context.getString(R.string.sequence_name)
+    private val seqSizeString = context.getString(R.string.sequence_size)
+    private val ascendingString = context.getString(R.string.ascending)
+    private val dayString =
+        "\u2022 ${dayStringResource.replaceFirstChar { it.titlecase(Locale.getDefault()) }}"
+    private val monthString =
+        "\u2022 ${monthStringResource.replaceFirstChar { it.titlecase(Locale.getDefault()) }}"
+    private val yearString =
+        "\u2022 ${yearStringResource.replaceFirstChar { it.titlecase(Locale.getDefault()) }}"
+    private val separatorString = context.getString(R.string.separator)
+    private val graphString = context.getString(R.string.graph)
+    private val turnsString = context.getString(R.string.turns)
+    private val regexNameString = context.getString(R.string.regex_name)
 
     private companion object {
         private const val WORST_SCORE = 1
@@ -158,6 +180,9 @@ class ResultUtils(val context: Context) {
         val matchesText = buildString {
             matchSequence.forEachIndexed { index, match ->
                 val pattern = match.pattern
+
+                append("<b>${index + 1}) \"${match.token}\"</b>")
+                append("<br>${patternString}: $pattern")
             }
         }
     }
