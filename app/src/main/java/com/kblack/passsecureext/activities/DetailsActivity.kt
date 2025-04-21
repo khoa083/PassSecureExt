@@ -14,7 +14,7 @@ import com.kblack.passsecureext.utils.UiUtils.Companion.setNavBarContrastEnforce
 import org.koin.android.ext.android.get
 
 class DetailsActivity : AppCompatActivity() {
-    private lateinit var passwordLine : CharSequence
+    lateinit var passwordLine : CharSequence
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         enableEdgeToEdge()
