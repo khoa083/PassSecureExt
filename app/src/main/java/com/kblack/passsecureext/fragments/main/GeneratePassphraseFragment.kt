@@ -1,10 +1,14 @@
 package com.kblack.passsecureext.fragments.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.kblack.passsecureext.activities.MainActivity
 import com.kblack.passsecureext.databinding.FragmentGeneratePassphraseBinding
 import com.kblack.passsecureext.preferences.PreferenceManager
 import org.koin.android.ext.android.inject
@@ -24,8 +28,17 @@ class GeneratePassphraseFragment : Fragment() {
         return fragmentBinding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+        val mainActivity = requireActivity() as MainActivity
+
+        // Adjust scrollview for edge to edge
+        ViewCompat.setOnApplyWindowInsetsListener(fragmentBinding.phraseScrollView) { v, windowInsets ->
+            // TODO
+            WindowInsetsCompat.CONSUMED
+        }
+
     }
 
     override fun onPause() {
