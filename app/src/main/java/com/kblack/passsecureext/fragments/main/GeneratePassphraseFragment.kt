@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import com.kblack.passsecureext.activities.MainActivity
 import com.kblack.passsecureext.databinding.FragmentGeneratePassphraseBinding
 import com.kblack.passsecureext.preferences.PreferenceManager
+import com.kblack.passsecureext.utils.UiUtils.Companion.convertDpToPx
 import org.koin.android.ext.android.inject
 
 class GeneratePassphraseFragment : Fragment() {
@@ -35,7 +38,12 @@ class GeneratePassphraseFragment : Fragment() {
 
         // Adjust scrollview for edge to edge
         ViewCompat.setOnApplyWindowInsetsListener(fragmentBinding.phraseScrollView) { v, windowInsets ->
-            // TODO
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()
+                                                        or WindowInsetsCompat.Type.displayCutout())
+            v.updatePadding(left = insets.left, top = insets.top, right = insets.right)
+            v.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                bottomMargin = insets.bottom + convertDpToPx(requireContext(), 64f)
+            }
             WindowInsetsCompat.CONSUMED
         }
 
