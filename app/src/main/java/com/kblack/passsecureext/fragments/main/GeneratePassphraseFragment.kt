@@ -47,6 +47,11 @@ class GeneratePassphraseFragment : Fragment() {
             WindowInsetsCompat.CONSUMED
         }
 
+        // Password length slider
+        fragmentBinding.phraseWordsSlider.apply {
+
+        }
+
     }
 
     override fun onPause() {
