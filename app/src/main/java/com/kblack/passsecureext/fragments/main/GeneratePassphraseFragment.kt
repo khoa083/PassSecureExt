@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.slider.Slider
 import com.kblack.passsecureext.R
 import com.kblack.passsecureext.activities.MainActivity
@@ -27,6 +28,8 @@ import com.kblack.passsecureext.preferences.PreferenceManager.Companion.PHRASE_W
 import com.kblack.passsecureext.utils.ClipboardUtils.Companion.hideSensitiveContent
 import com.kblack.passsecureext.utils.UiUtils.Companion.convertDpToPx
 import com.kblack.passsecureext.utils.UiUtils.Companion.showSnackBar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class GeneratePassphraseFragment : Fragment() {
@@ -135,7 +138,13 @@ class GeneratePassphraseFragment : Fragment() {
 
     fun generatePassphrase() {
         val numberOfWords = fragmentBinding.phraseWordsSlider.value.toInt()
+        lifecycleScope.launch(Dispatchers.Default) {
+            val passphrase = buildString {
+                for (i in 0 until numberOfWords) {
 
+                }
+            }
+        }
     }
 
     override fun onPause() {
