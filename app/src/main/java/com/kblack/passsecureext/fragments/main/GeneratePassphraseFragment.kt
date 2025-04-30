@@ -30,7 +30,9 @@ import com.kblack.passsecureext.utils.UiUtils.Companion.convertDpToPx
 import com.kblack.passsecureext.utils.UiUtils.Companion.showSnackBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
+import java.security.SecureRandom
 
 class GeneratePassphraseFragment : Fragment() {
 
@@ -141,6 +143,8 @@ class GeneratePassphraseFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Default) {
             val passphrase = buildString {
                 for (i in 0 until numberOfWords) {
+                    val dieRollsValues =
+                        IntArray(5) { get<SecureRandom>().nextInt(6) + 1 }
 
                 }
             }
