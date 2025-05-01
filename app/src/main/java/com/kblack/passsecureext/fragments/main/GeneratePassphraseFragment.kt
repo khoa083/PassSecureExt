@@ -30,6 +30,7 @@ import com.kblack.passsecureext.utils.UiUtils.Companion.convertDpToPx
 import com.kblack.passsecureext.utils.UiUtils.Companion.showSnackBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import java.security.SecureRandom
@@ -38,7 +39,7 @@ class GeneratePassphraseFragment : Fragment() {
 
     private var _binding: FragmentGeneratePassphraseBinding? = null
     private val fragmentBinding get() = _binding!!
-    private val preManager by inject<PreferenceManager>()
+    private val prefManager by inject<PreferenceManager>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +68,7 @@ class GeneratePassphraseFragment : Fragment() {
 
         // Password length slider
         fragmentBinding.phraseWordsSlider.apply {
-            value = preManager.getFloat(PHRASE_WORDS, defValue = 5f)
+            value = prefManager.getFloat(PHRASE_WORDS, defValue = 5f)
             fragmentBinding.wordsText.text = "${getString(R.string.words)} : ${value.toInt()}"
 
             addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
@@ -86,7 +87,7 @@ class GeneratePassphraseFragment : Fragment() {
         // Separator dropdown
         fragmentBinding.separatorText.text = getString(R.string.separator).removePrefix("\u2022 ")
         fragmentBinding.separatorDropdownMenu.apply {
-            setText(preManager.getString(PHRASE_SEPARATOR))
+            setText(prefManager.getString(PHRASE_SEPARATOR))
             setAdapter(ArrayAdapter(requireContext(),
                 R.layout.item_dropdown_menu,
                 arrayOf("-", ".", ",", getString(R.string.spaces))
@@ -99,7 +100,7 @@ class GeneratePassphraseFragment : Fragment() {
 
         // Capitalize
         fragmentBinding.capitalizeSwitch.apply {
-            isChecked = preManager.getBoolean(PHRASE_CAPITALIZE)
+            isChecked = prefManager.getBoolean(PHRASE_CAPITALIZE)
             setOnCheckedChangeListener { _, _ ->
                 generatePassphrase()
             }
@@ -144,17 +145,40 @@ class GeneratePassphraseFragment : Fragment() {
             val passphrase = buildString {
                 for (i in 0 until numberOfWords) {
                     val dieRollsValues =
-                        IntArray(5) { get<SecureRandom>().nextInt(6) + 1 }
+                        IntArray(5) { get<SecureRandom>().nextInt(6) + 1 } // Rolling a six-sided die five times.
+                    val wordKey = dieRollsValues.joinToString("") // Form a string key
+                    var word = get<Map<String, String>>()[wordKey] // Find the word from words list with corresponding key
 
+                    if (fragmentBinding.capitalizeSwitch.isChecked) {
+                        word =
+                            word?.replaceFirstChar { char ->
+                                char.titlecase()
+                            }
+                    }
+
+                    append(word)
+                    if (i < numberOfWords - 1) {
+                        append(
+                            if (fragmentBinding.separatorDropdownMenu.text.toString() == getString(R.string.spaces)) " "
+                            else fragmentBinding.separatorDropdownMenu.text.toString()
+                        )
+                    }
                 }
             }
+
+            withContext(Dispatchers.Main) {
+                fragmentBinding.phraseGeneratedTextView.text = passphrase
+            }
         }
+
     }
 
     override fun onPause() {
         super.onPause()
-        preManager.apply {
-
+        prefManager.apply {
+            setFloat(PHRASE_WORDS, fragmentBinding.phraseWordsSlider.value)
+            setBoolean(PHRASE_CAPITALIZE, fragmentBinding.capitalizeSwitch.isChecked)
+            setString(PHRASE_SEPARATOR, fragmentBinding.separatorDropdownMenu.text.toString())
         }
     }
 
