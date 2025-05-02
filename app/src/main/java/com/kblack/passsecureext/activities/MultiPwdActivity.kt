@@ -25,8 +25,8 @@ class MultiPwdActivity : AppCompatActivity(), MenuProvider {
 
     private lateinit var navController: NavController
     private val prefManager by inject<PreferenceManager>()
-    private var isGridView = false
-    private var isAscSort = false
+    var isGridView = false
+    var isAscSort = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
