@@ -1,6 +1,6 @@
 [versions]
 androidGradle = "8.9.2"
-androidKotlin = "2.1.0" # https://github.com/JetBrains/kotlin/releases/latest (latest version is not auto detected)
+androidKotlin = "2.1.20" # https://github.com/JetBrains/kotlin/releases/latest (latest version is not auto detected)
 appcompat = "1.7.0"
 coreKtx = "1.16.0"
 splashscreen = "1.0.1"
